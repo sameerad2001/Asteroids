@@ -82,6 +82,7 @@
   <ItemGroup>
     <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>

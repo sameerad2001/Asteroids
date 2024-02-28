@@ -23,8 +23,11 @@ protected :
     sf::Texture PlayerTexture;
     sf::Vector2f playerPosition;
     sf::Vector2f playerVelocity;
-    const int PLAYER_SPEED = 500;
-    const int SPEED_LOSS_FACTOR = 2.5;
+    sf::Vector2f playerDirection;
+    const int PLAYER_SPEED = 150;
+    const int TURN_ANGLE = 1000;
+    const int SPEED_LOSS_FACTOR = 0.5;
 
     bool isGameOver = false;
+    float dt;
 };

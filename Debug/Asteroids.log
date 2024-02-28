@@ -1,12 +1,8 @@
 ﻿  Game.cpp
-C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Game.h(27,35): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Game.h(29,35): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
 C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Utility.h(5,8): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Game.cpp(37,42): warning C4244: 'argument': conversion from 'const int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
+C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Game.cpp(30,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   main.cpp
-C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Game.h(27,35): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Game.h(29,35): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
   Generating Code...
   Asteroids.vcxproj -> C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Debug\Asteroids.exe
