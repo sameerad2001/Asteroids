@@ -1,8 +1,41 @@
-﻿  Game.cpp
-C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Game.h(29,35): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+﻿  Player.cpp
+C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Player.h(26,35): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
 C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Utility.h(5,8): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Game.cpp(30,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  main.cpp
-C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Game.h(29,35): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
-  Generating Code...
+C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Player.cpp(8,80): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Player.cpp(8,55): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Player.cpp(27,45): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Player.cpp(31,45): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Asteroids\Player.cpp(39,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Asteroids.vcxproj -> C:\Users\samee\Documents\Programming\Game development\Job search\Asteroids\Debug\Asteroids.exe
