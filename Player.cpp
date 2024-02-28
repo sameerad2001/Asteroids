@@ -19,7 +19,7 @@ Player::~Player() {
     EventEmitter::RemoveListner(this);
 }
 
-void Player::MovePlayer(float dt) {
+void Player::Update(float dt) {
     this->dt = dt;
 
     playerPosition += playerVelocity * dt;

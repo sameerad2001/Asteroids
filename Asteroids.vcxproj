@@ -80,6 +80,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Asteroids.cpp" />
     <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputSystem.cpp" />
@@ -87,6 +88,7 @@
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Asteroids.h" />
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="EventType.h" />
     <ClInclude Include="Game.h" />

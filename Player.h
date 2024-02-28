@@ -6,7 +6,7 @@ class Player : public EventListener {
 public :
     Player(sf::RenderWindow* window);
     ~Player();
-    void MovePlayer(float dt);
+    void Update(float dt);
     void DrawPlayer();
     void ReceiveEvent(const EventType eventType) override;
 

@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "UISystem.h"
+#include "Asteroids.h"
 
 class Game
 {
@@ -13,9 +14,7 @@ public :
 
 protected :
     Player* player;
-    sf::Sprite Asteroid;
-    sf::Texture AsteroidTexture;
-    
+    Asteroids* asteroids;
     UI* ui;
 
     sf::RenderWindow* window;
