@@ -5,6 +5,7 @@ Player::Player(sf::RenderWindow* window) {
     this->window = window;
     playerTexture.loadFromFile("Assets/Ship.png");
     playerSprite.setTexture(playerTexture);
+    playerSprite.setOrigin(playerTexture.getSize().x / 2.0f, playerTexture.getSize().y / 2.0f);
     playerPosition = sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2);
     playerVelocity = sf::Vector2f(0, 0);
     playerDirection = sf::Vector2f(0, -1);

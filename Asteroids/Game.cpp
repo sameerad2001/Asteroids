@@ -11,8 +11,8 @@ Game::Game(sf::RenderWindow* window) {
     player = new Player(window);
     engine->AddGameObject(player);
 
-    asteroids = new Asteroids(window);
-    engine->AddGameObject(asteroids);
+    asteroid = new Asteroid(window);
+    engine->AddGameObject(asteroid);
 
     levelUI = new LevelUI(window, this);
     engine->AddGameObject(levelUI);
@@ -34,16 +34,18 @@ Game::~Game() {
 void Game::Update(float dt) {
     engine->Update(dt);
     engine->Draw();
+    timer += dt;
 }
 
 void Game::ReceiveEvent(const EventType eventType) {
-    if (eventType != FIRE) return;
+    if (eventType != FIRE || timer < 1.0f / FIRE_RATE) return;
 
     for (Bullet* bullet : bulletPool) {
         if (!bullet->GetIsActive()) {
-            bullet->ResetBullet(player->GetPosition(), player->GetDirection());
+            bullet->ResetBullet(player->GetCenter(), player->GetDirection());
             break;
         }
     }
+    timer = 0;
 }
 

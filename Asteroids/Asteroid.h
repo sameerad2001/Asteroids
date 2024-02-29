@@ -2,10 +2,10 @@
 #include <SFML/Graphics.hpp>
 #include "GameObject.h"
 
-class Asteroids : public GameObject{
+class Asteroid : public GameObject{
 public :
-	Asteroids(sf::RenderWindow* window);
-	~Asteroids() override {};
+	Asteroid(sf::RenderWindow* window);
+	~Asteroid() override {};
 	void Update(float dt) override;
 	void Draw() override;
 	void OnCollisionBegin(GameObject* other) override {};

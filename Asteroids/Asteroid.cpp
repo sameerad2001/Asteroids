@@ -1,8 +1,8 @@
-#include "Asteroids.h"
+#include "Asteroid.h"
 #include <cstdlib>
 #include <ctime>
 
-Asteroids::Asteroids(sf::RenderWindow* window) {
+Asteroid::Asteroid(sf::RenderWindow* window) {
     this->window = window;
 
     asteroidTexture.loadFromFile("Assets/Asteroid.png");
@@ -22,7 +22,7 @@ Asteroids::Asteroids(sf::RenderWindow* window) {
     asteroidVelocity = sf::Vector2f(velX, velY);
 }
 
-void Asteroids::Update(float dt) {
+void Asteroid::Update(float dt) {
     asteroidPosition += asteroidVelocity * dt;
     asteroidSprite.setPosition(asteroidPosition);
 
@@ -39,6 +39,6 @@ void Asteroids::Update(float dt) {
     asteroidSprite.setPosition(asteroidPosition);
 }
 
-void Asteroids::Draw() {
+void Asteroid::Draw() {
     window->draw(asteroidSprite);
 }

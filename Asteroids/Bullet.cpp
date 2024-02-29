@@ -3,10 +3,12 @@
 Bullet::Bullet(sf::RenderWindow* window, const sf::Vector2f& initialPosition, const sf::Vector2f& initialDirection) {
     bulletTexture.loadFromFile("Assets/Asteroid.png");
     bulletSprite.setTexture(bulletTexture);
-    bulletSprite.setScale(0.5f, 0.5f);
+    bulletSprite.setOrigin(bulletTexture.getSize().x / 2.0f, bulletTexture.getSize().y / 2.0f);
+    bulletSprite.setScale(0.3f, 0.3f);
     bulletPosition = initialPosition;
     bulletDirection = initialDirection;
     bulletVelocity = sf::Vector2f(0, 0);
+    bulletSprite.setPosition(window->getView().getCenter());
 
     timeLeft = LIFE_TIME;
     this->window = window;

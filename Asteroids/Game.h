@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-#include "Asteroids.h"
+#include "Asteroid.h"
 #include "Bullet.h"
 #include "Engine.h"
 #include "EventSystem.h"
@@ -24,10 +24,11 @@ public :
 
 protected :
     Player* player;
-    Asteroids* asteroids;
+    Asteroid* asteroid;
     LevelUI* levelUI;
     std::vector<Bullet*> bulletPool;
-    const int BULLET_POOL_SIZE = 10;
+    const int BULLET_POOL_SIZE = 30;
+    const int FIRE_RATE = 5; // bullets per second
 
     Engine* engine;
 
@@ -36,4 +37,5 @@ protected :
     bool isGameOver = false;
     int score = 0;
     int lives = 3;
+    float timer = 0;
 };
