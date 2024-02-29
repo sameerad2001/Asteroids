@@ -9,8 +9,8 @@ public :
     ~Player() override;
     void Update(float dt) override;
     void Draw() override;
+    void OnCollisionBegin(GameObject* other) override {};
     void ReceiveEvent(const EventType eventType) override;
-    void OnCollisionBegin() override {};
 
 protected :
     sf::Sprite playerSprite;

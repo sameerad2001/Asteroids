@@ -8,7 +8,7 @@ public :
 	~Asteroids() override {};
 	void Update(float dt) override;
 	void Draw() override;
-	void OnCollisionBegin() override {};
+	void OnCollisionBegin(GameObject* other) override {};
 
 protected :
 	sf::RenderWindow* window;

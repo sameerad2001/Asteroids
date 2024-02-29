@@ -8,5 +8,6 @@ public :
 	static void UpdateInputSystem(sf::Event event);
 
 protected:
+	static std::unordered_map<sf::Keyboard::Key, EventType> keyEvents;
 	static std::unordered_map<sf::Keyboard::Key, bool> keysPressed;
 };

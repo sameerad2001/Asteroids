@@ -7,5 +7,6 @@ enum EventType {
 	THRUST,
 	REVERSE, // NOT required, buts its there if needed in the future
 	TURN_LEFT,
-	TURN_RIGHT
+	TURN_RIGHT,
+	FIRE
 };

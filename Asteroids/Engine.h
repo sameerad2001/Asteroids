@@ -18,12 +18,14 @@ public :
 
 	void Update(float dt) {
 		for (auto gameObject : gameObjects) {
+			if (!gameObject->GetIsActive()) continue;
 			gameObject->Update(dt);
 		}
 	}
 
 	void Draw() {
 		for (auto gameObject : gameObjects) {
+			if (!gameObject->GetIsActive()) continue;
 			gameObject->Draw();
 		}
 	}

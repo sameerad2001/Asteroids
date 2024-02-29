@@ -27,7 +27,7 @@ public:
 		ui->setPosition(sf::Vector2f(10, 35));
 		ui->draw(window);
 	}
-	void OnCollisionBegin() override {};
+	void OnCollisionBegin(GameObject* other) override {};
 
 protected:
 	UI* ui;
