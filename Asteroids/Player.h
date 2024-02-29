@@ -11,6 +11,8 @@ public :
     void Draw() override;
     void OnCollisionBegin(GameObject* other) override {};
     void ReceiveEvent(const EventType eventType) override;
+    sf::Vector2f GetPosition() const { return playerPosition; };
+    sf::Vector2f GetDirection() const { return playerDirection; };
 
 protected :
     sf::Sprite playerSprite;

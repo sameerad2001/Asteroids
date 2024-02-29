@@ -9,14 +9,17 @@ public :
     void Update(float dt) override;
     void Draw() override;
     void OnCollisionBegin(GameObject* other) override {};
-    void SetPositionAndDirection(const sf::Vector2f& newPosition, const sf::Vector2f& newDirection);
+    void ResetBullet(const sf::Vector2f& newPosition, const sf::Vector2f& newDirection);
 
 protected :
     sf::Sprite bulletSprite;
     sf::Texture bulletTexture;
     sf::Vector2f bulletPosition;
+    sf::Vector2f bulletDirection;
     sf::Vector2f bulletVelocity;
     sf::RenderWindow* window;
 
-    bool isOutOfBounds = false;
+    float timeLeft;
+    const int LIFE_TIME = 10; //seconds
+    const int SPEED = 1000;
 };

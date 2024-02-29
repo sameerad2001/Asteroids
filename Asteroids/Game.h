@@ -1,12 +1,16 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <vector>
+
+#include "Asteroids.h"
+#include "Bullet.h"
+#include "Engine.h"
+#include "EventSystem.h"
 #include "Player.h"
 #include "UISystem.h"
-#include "Asteroids.h"
-#include "Engine.h"
 
 class LevelUI;
-class Game
+class Game : public EventListener
 {
 public :
     Game(sf::RenderWindow* window);
@@ -16,12 +20,14 @@ public :
 
     int GetScore() const { return score; };
     int GetLives() const { return lives; };
+    void ReceiveEvent(const EventType eventType);
 
 protected :
     Player* player;
     Asteroids* asteroids;
     LevelUI* levelUI;
-    //UI* ui;
+    std::vector<Bullet*> bulletPool;
+    const int BULLET_POOL_SIZE = 10;
 
     Engine* engine;
 

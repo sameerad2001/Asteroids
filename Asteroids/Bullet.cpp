@@ -5,21 +5,27 @@ Bullet::Bullet(sf::RenderWindow* window, const sf::Vector2f& initialPosition, co
     bulletSprite.setTexture(bulletTexture);
     bulletSprite.setScale(0.5f, 0.5f);
     bulletPosition = initialPosition;
-    bulletVelocity = initialDirection;
+    bulletDirection = initialDirection;
+    bulletVelocity = sf::Vector2f(0, 0);
 
+    timeLeft = LIFE_TIME;
     this->window = window;
 }
 
 void Bullet::Update(float dt) {
+    bulletVelocity = sf::Vector2f(bulletDirection.x * SPEED, bulletDirection.y * SPEED);
     bulletPosition += bulletVelocity * dt;
 
     sf::Vector2u windowSize = window->getSize();
-    if (bulletPosition.x < 0 || 
+    if (timeLeft <= 0 ||
+        bulletPosition.x < 0 || 
         bulletPosition.x > windowSize.x || 
         bulletPosition.y < 0 || 
         bulletPosition.y > windowSize.y) {
-        isOutOfBounds = true;
+        SetIsActive(false);
     }
+
+    timeLeft -= dt;
 }
 
 void Bullet::Draw() {
@@ -27,9 +33,10 @@ void Bullet::Draw() {
     window->draw(bulletSprite);
 }
 
-void Bullet::SetPositionAndDirection(const sf::Vector2f& newPosition, const sf::Vector2f& newDirection)
+void Bullet::ResetBullet(const sf::Vector2f& newPosition, const sf::Vector2f& newDirection)
 {
     bulletPosition = newPosition;
-    bulletVelocity = newDirection;
-    isOutOfBounds = false;
+    bulletDirection = newDirection;
+    timeLeft = LIFE_TIME;
+    SetIsActive(true);
 }
