@@ -3,7 +3,9 @@
 #include "Player.h"
 #include "UISystem.h"
 #include "Asteroids.h"
+#include "Engine.h"
 
+class LevelUI;
 class Game
 {
 public :
@@ -12,10 +14,16 @@ public :
 
     void Update(float dt);
 
+    int GetScore() const { return score; };
+    int GetLives() const { return lives; };
+
 protected :
     Player* player;
     Asteroids* asteroids;
-    UI* ui;
+    LevelUI* levelUI;
+    //UI* ui;
+
+    Engine* engine;
 
     sf::RenderWindow* window;
 

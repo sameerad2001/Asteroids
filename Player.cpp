@@ -40,7 +40,7 @@ void Player::Update(float dt) {
     playerSprite.setRotation(angle);
 }
 
-void Player::DrawPlayer() {
+void Player::Draw() {
     window->draw(playerSprite);
 }
 

@@ -3,14 +3,13 @@
 
 int main()
 {
-    sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(1270, 920), "LHG Code Exercise");
+    sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(1024, 768), "LHG Code Exercise");
     sf::Clock GameClock;
 
     Game asteroids(window);
 
     while (window->isOpen())
     {
-
         sf::Event event;
         while (window->pollEvent(event))
         {

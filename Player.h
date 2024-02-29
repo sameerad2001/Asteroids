@@ -1,14 +1,16 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "EventSystem.h"
+#include "GameObject.h"
 
-class Player : public EventListener {
+class Player : public EventListener, public GameObject {
 public :
     Player(sf::RenderWindow* window);
-    ~Player();
-    void Update(float dt);
-    void DrawPlayer();
+    ~Player() override;
+    void Update(float dt) override;
+    void Draw() override;
     void ReceiveEvent(const EventType eventType) override;
+    void OnCollisionBegin() override {};
 
 protected :
     sf::Sprite playerSprite;

@@ -1,34 +1,30 @@
 #include <iostream>
 #include "Game.h"
+#include "LevelUI.h"
 
 Game::Game(sf::RenderWindow* window) {
     this->window = window;
 
+    engine = new Engine();
+
+    // Initializing game objects
     player = new Player(window);
+    engine->AddGameObject(player);
+
     asteroids = new Asteroids(window);
-    ui = new UI("DS-DIGI.ttf", 30, sf::Color::White, sf::Vector2f(0, 0));
+    engine->AddGameObject(asteroids);
+
+    levelUI = new LevelUI(window, this);
+    engine->AddGameObject(levelUI);
 }
 
 Game::~Game() {
-    delete player;
-    delete asteroids;
-    delete ui;
+    delete engine;
 }
 
 void Game::Update(float dt) {
-    player->Update(dt);
-    player->DrawPlayer();
-
-    asteroids->Update(dt);
-    asteroids->Draw();
-
-    ui->setText("Score " + std::to_string(score));
-    ui->setPosition(sf::Vector2f(10, 10));
-    ui->draw(window);
-
-    ui->setText("Lives " + std::to_string(lives));
-    ui->setPosition(sf::Vector2f(10, 35));
-    ui->draw(window);
+    engine->Update(dt);
+    engine->Draw();
 }
 
 
