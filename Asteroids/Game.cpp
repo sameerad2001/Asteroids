@@ -4,8 +4,8 @@
 
 Game::Game(sf::RenderWindow* window) {
     this->window = window;
-
     engine = new Engine();
+    EventEmitter::RegisterForEvent(FIRE, this);
 
     // Initializing game objects
     player = new Player(window);
@@ -23,8 +23,6 @@ Game::Game(sf::RenderWindow* window) {
         bulletPool.push_back(bullet);
         engine->AddGameObject(bullet);
     }
-
-    EventEmitter::RegisterForEvent(FIRE, this);
 }
 
 Game::~Game() {
@@ -34,11 +32,11 @@ Game::~Game() {
 void Game::Update(float dt) {
     engine->Update(dt);
     engine->Draw();
-    timer += dt;
+    timeSinceLastBullet += dt;
 }
 
 void Game::ReceiveEvent(const EventType eventType) {
-    if (eventType != FIRE || timer < 1.0f / FIRE_RATE) return;
+    if (eventType != FIRE || timeSinceLastBullet < 1.0f / FIRE_RATE) return;
 
     for (Bullet* bullet : bulletPool) {
         if (!bullet->GetIsActive()) {
@@ -46,6 +44,6 @@ void Game::ReceiveEvent(const EventType eventType) {
             break;
         }
     }
-    timer = 0;
+    timeSinceLastBullet = 0;
 }
 

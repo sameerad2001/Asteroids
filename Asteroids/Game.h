@@ -23,19 +23,23 @@ public :
     void ReceiveEvent(const EventType eventType);
 
 protected :
+    // Game objects
     Player* player;
     Asteroid* asteroid;
     LevelUI* levelUI;
+
+    // Bullet pool
     std::vector<Bullet*> bulletPool;
     const int BULLET_POOL_SIZE = 30;
-    const int FIRE_RATE = 5; // bullets per second
+    const float FIRE_RATE = 5.0f; // bullets per second
+    float timeSinceLastBullet = 0;
 
+    // Engine and window
     Engine* engine;
-
     sf::RenderWindow* window;
 
+    // Game state
     bool isGameOver = false;
     int score = 0;
     int lives = 3;
-    float timer = 0;
 };
