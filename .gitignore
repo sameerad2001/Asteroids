@@ -1,0 +1,35 @@
+# Ignore Visual Studio temporary files and build results
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+build/
+[Bb]in/
+[Oo]bj/
+
+# Ignore compiled SPIR-V files
+*.spv
+
+# Visual Studio
+.vs/
+.vscode/
+
+# Visual Studio project files
+*.vcxproj.user
+
+# macOS
+.DS_Store
+
+# Docs
+External\ Libraries/GLFW/docs
+External\ Libraries/glm/doc
+
+# SFML
+.cache/
+.idea/

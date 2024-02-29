@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Asteroids", "Asteroids\Asteroids.vcxproj", "{2151193D-E9D0-4C06-8F72-D018BCE7DD7B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2151193D-E9D0-4C06-8F72-D018BCE7DD7B}.Debug|x86.ActiveCfg = Debug|Win32
+		{2151193D-E9D0-4C06-8F72-D018BCE7DD7B}.Debug|x86.Build.0 = Debug|Win32
+		{2151193D-E9D0-4C06-8F72-D018BCE7DD7B}.Release|x86.ActiveCfg = Release|Win32
+		{2151193D-E9D0-4C06-8F72-D018BCE7DD7B}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {462D44B9-B4E7-4B43-A6DD-DEFB6B5F3549}
+	EndGlobalSection
+EndGlobal
