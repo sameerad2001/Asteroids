@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Asteroid.h"
 #include "EventSystem.h"
 #include "GameObject.h"
 
@@ -23,4 +24,7 @@ protected :
     float timeLeft;
     const int LIFE_TIME = 10; //seconds
     const int SPEED = 1000;
+
+    float timeSinceCollision = 0;
+    int COLLISION_GRACE_PERIOD = 1; // Otherwise there will be multiple collisions
 };

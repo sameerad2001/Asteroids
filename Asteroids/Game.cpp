@@ -11,9 +11,6 @@ Game::Game(sf::RenderWindow* window) {
     player = new Player(window);
     engine->AddGameObject(player);
 
-    asteroid = new Asteroid(window);
-    engine->AddGameObject(asteroid);
-
     levelUI = new LevelUI(this);
     engine->AddGameObject(levelUI);
 
@@ -34,6 +31,13 @@ void Game::Update(float dt) {
     engine->Draw();
     timeSinceLastBullet += dt;
     timeSinceDeath += dt;
+    timeSinceLastAsteroid += dt;
+
+    if (timeSinceLastAsteroid < ASTEROID_SPAWN_TIME) return;
+
+    Asteroid* asteroid = new Asteroid(window);
+    engine->AddGameObject(asteroid);
+    timeSinceLastAsteroid = 0;
 }
 
 void Game::ReceiveEvent(const EventType eventType) {
@@ -47,11 +51,14 @@ void Game::ReceiveEvent(const EventType eventType) {
         }
         timeSinceLastBullet = 0;
     }
-    if (eventType == PLAYER_ASTEROID_COLLISION && timeSinceDeath > AFTER_DEATH_COOLDOWN) {
+    if (eventType == PLAYER_ASTEROID_COLLISION && timeSinceDeath > AFTER_DEATH_GRACE_PERIOD) {
         lives--;
         timeSinceDeath = 0;
         player->SetPosition(sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2));
         player->SetVelocity(sf::Vector2f(0, 0));
+    }
+    if (eventType == BULLET_ASTEROID_COLLISION) {
+        score++;
     }
 }
 

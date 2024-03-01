@@ -1,11 +1,12 @@
 #include "Bullet.h"
+#include <iostream>
 
 Bullet::Bullet(sf::RenderWindow* window, const sf::Vector2f& initialPosition, const sf::Vector2f& initialDirection) {
     bulletTexture.loadFromFile("Assets/Asteroid.png");
     bulletSprite = new sf::Sprite();
     bulletSprite->setTexture(bulletTexture);
     bulletSprite->setOrigin(bulletTexture.getSize().x / 2.0f, bulletTexture.getSize().y / 2.0f);\
-    bulletSprite->setScale(0.3f, 0.3f);
+    bulletSprite->setScale(0.1f, 0.1f);
     bulletPosition = initialPosition;
     bulletDirection = initialDirection;
     bulletVelocity = sf::Vector2f(0, 0);
@@ -39,6 +40,7 @@ void Bullet::Update(float dt) {
 
     bulletSprite->setPosition(bulletPosition);
     timeLeft -= dt;
+    timeSinceCollision += dt;
 }
 
 void Bullet::Draw(sf::RenderWindow* window) {
@@ -54,7 +56,18 @@ void Bullet::ResetBullet(const sf::Vector2f& newPosition, const sf::Vector2f& ne
 }
 
 void Bullet::OnCollision(GameObject* other) {
-    if (other->GetTag() == "Asteroid") {
+    if (other->GetTag() == "Asteroid" && timeSinceCollision > COLLISION_GRACE_PERIOD) {
         EventEmitter::EmitEvent(BULLET_ASTEROID_COLLISION);
+        Asteroid* asteroid = dynamic_cast<Asteroid*>(other);
+        AsteroidType type = asteroid->GetAsteroidType();
+        if (type == SMALL)
+        {
+            asteroid->SetIsActive(false);
+            return;
+        }
+        std::cout << "Before :" << (int)asteroid->GetAsteroidType() << "\n";
+        asteroid->SetAsteroidType(static_cast<AsteroidType>(type - 1));
+        std::cout << "After :" << (int)asteroid->GetAsteroidType() << "\n";
+        timeSinceCollision = 0;
     }
 }

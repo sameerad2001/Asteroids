@@ -2,6 +2,12 @@
 #include <cstdlib>
 #include <ctime>
 
+std::unordered_map<AsteroidType, float> scaleFactors = {
+   {BIG, 1.0f},
+   {MEDIUM, 0.5f},
+   {SMALL, 0.25f}
+};
+
 Asteroid::Asteroid(sf::RenderWindow* window, AsteroidType type) {
     this->window = window;
     this->asteroidType = type;
@@ -10,7 +16,7 @@ Asteroid::Asteroid(sf::RenderWindow* window, AsteroidType type) {
     asteroidSprite = new sf::Sprite();
     asteroidSprite->setTexture(asteroidTexture);
     asteroidSprite->setOrigin(asteroidTexture.getSize().x / 2.0f, asteroidTexture.getSize().y / 2.0f);
-    asteroidSprite->setScale(asteroidType, asteroidType);
+    asteroidSprite->setScale(asteroidType * 0.3, asteroidType * 0.3);
 
     std::srand(static_cast<unsigned int>(std::time(nullptr))); // Random seed generation
     sf::Vector2u windowSize = window->getSize();

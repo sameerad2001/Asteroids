@@ -1,11 +1,15 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <unordered_map>
 #include "GameObject.h"
 
 enum AsteroidType {
-	BIG = 2,
+	BIG = 3,
+	MEDIUM = 2,
 	SMALL = 1
 };
+
+extern std::unordered_map<AsteroidType, float> scaleFactors;
 
 class Asteroid : public GameObject{
 public :
@@ -17,7 +21,7 @@ public :
 
 	void SetAsteroidType(const AsteroidType& type) { 
 		asteroidType = type; 
-		asteroidSprite->setScale(type, type);
+		asteroidSprite->setScale(scaleFactors[type], scaleFactors[type]);
 	}
 	AsteroidType GetAsteroidType() const { return asteroidType; }
 

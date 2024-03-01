@@ -25,14 +25,19 @@ public :
 protected :
     // Game objects
     Player* player;
-    Asteroid* asteroid;
     LevelUI* levelUI;
 
     // Bullet pool
     std::vector<Bullet*> bulletPool;
     const int BULLET_POOL_SIZE = 30;
-    const float FIRE_RATE = 10.0f; // bullets per second
+    const float FIRE_RATE = 10.0f; // <rate> bullets per second
     float timeSinceLastBullet = 0;
+
+    // Asteroids
+    float timeSinceLastAsteroid = 0;
+    int ASTEROID_SPAWN_TIME = 5; // asteroid every <time> second
+    int AFTER_DEATH_GRACE_PERIOD = 5;
+    float timeSinceDeath = 0;
 
     // Engine and window
     Engine* engine;
@@ -42,6 +47,4 @@ protected :
     bool isGameOver = false;
     int score = 0;
     int lives = 3;
-    int AFTER_DEATH_COOLDOWN = 5;
-    float timeSinceDeath = 0;
 };
