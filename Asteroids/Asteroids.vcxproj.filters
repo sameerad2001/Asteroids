@@ -48,6 +48,9 @@
     <ClCompile Include="Engine.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -87,6 +90,12 @@
       <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsBody.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

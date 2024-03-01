@@ -8,15 +8,17 @@
 #include "EventSystem.h"
 #include "Player.h"
 #include "UISystem.h"
+#include "Scene.h"
+#include "SceneManager.h"
 
 class LevelUI;
-class Game : public EventListener
+class Game : public EventListener, public Scene
 {
 public :
     Game(sf::RenderWindow* window);
     ~Game();
 
-    void Update(float dt);
+    void Update(float dt) override;
 
     int GetScore() const { return score; };
     int GetLives() const { return lives; };

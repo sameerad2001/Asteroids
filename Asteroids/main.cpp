@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "SceneManager.h"
 #include "InputSystem.h"
 
 int main()
@@ -6,7 +7,8 @@ int main()
     sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(1024, 768), "LHG Code Exercise");
     sf::Clock GameClock;
 
-    Game asteroids(window);
+    SceneManager* sceneManager = SceneManager::GetInstance(window);
+    sceneManager->ChangeScene(GAME);
 
     while (window->isOpen())
     {
@@ -20,10 +22,11 @@ int main()
         sf::Time dt = GameClock.restart();
 
         window->clear();
-        asteroids.Update(dt.asSeconds());
+        sceneManager->Update(dt.asSeconds());
         window->display();
     }
-    
+
+    sceneManager->Destroy();
     delete window;
     return 0;
 }
