@@ -9,7 +9,7 @@ public :
 		physicsBody = nullptr;
 	};
 	virtual void Update(float dt) = 0;
-	virtual void Draw() = 0;
+	virtual void Draw(sf::RenderWindow* window) = 0;
 	virtual void OnCollision(GameObject* other) = 0;
 
 	void SetIsActive(const bool& val) { isActive = val; }

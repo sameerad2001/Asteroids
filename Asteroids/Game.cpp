@@ -4,7 +4,7 @@
 
 Game::Game(sf::RenderWindow* window) {
     this->window = window;
-    engine = new Engine();
+    engine = new Engine(window);
     EventEmitter::RegisterForEvent(FIRE, this);
 
     // Initializing game objects
@@ -14,7 +14,7 @@ Game::Game(sf::RenderWindow* window) {
     asteroid = new Asteroid(window);
     engine->AddGameObject(asteroid);
 
-    levelUI = new LevelUI(window, this);
+    levelUI = new LevelUI(this);
     engine->AddGameObject(levelUI);
 
     for (int i = 0; i < BULLET_POOL_SIZE; ++i) {

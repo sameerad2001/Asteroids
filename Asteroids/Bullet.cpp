@@ -41,7 +41,7 @@ void Bullet::Update(float dt) {
     timeLeft -= dt;
 }
 
-void Bullet::Draw() {
+void Bullet::Draw(sf::RenderWindow* window) {
     window->draw(*bulletSprite);
 }
 

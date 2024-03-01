@@ -9,7 +9,7 @@ public :
     Player(sf::RenderWindow* window);
     ~Player() override;
     void Update(float dt) override;
-    void Draw() override;
+    void Draw(sf::RenderWindow* window) override;
     void OnCollision(GameObject* other) override;
     void ReceiveEvent(const EventType eventType) override;
     sf::Vector2f GetPosition() const { return playerPosition; };

@@ -7,7 +7,7 @@ public :
 	Asteroid(sf::RenderWindow* window);
 	~Asteroid() override;
 	void Update(float dt) override;
-	void Draw() override;
+	void Draw(sf::RenderWindow* window) override;
 	void OnCollision(GameObject* other) override {};
 
 protected :

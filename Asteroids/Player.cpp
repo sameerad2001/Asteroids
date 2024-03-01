@@ -50,7 +50,7 @@ void Player::Update(float dt) {
     playerSprite->setRotation(angle);
 }
 
-void Player::Draw() {
+void Player::Draw(sf::RenderWindow* window) {
     window->draw(*playerSprite);
 }
 

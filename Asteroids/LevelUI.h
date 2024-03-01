@@ -6,9 +6,8 @@
 
 class LevelUI : public GameObject {
 public:
-	LevelUI(sf::RenderWindow* window, Game* game) {
+	LevelUI(Game* game) {
 		ui = new UI("DS-DIGI.ttf", 30, sf::Color::White, sf::Vector2f(0, 0));
-		this->window = window;	
 		this->game = game;
 	}
 	~LevelUI() override {
@@ -18,7 +17,7 @@ public:
 		score = game->GetScore();
 		score = game->GetLives();
 	};
-	void Draw() override {
+	void Draw(sf::RenderWindow* window) override {
 		ui->setText("Score " + std::to_string(score));
 		ui->setPosition(sf::Vector2f(10, 10));
 		ui->draw(window);
@@ -32,7 +31,6 @@ public:
 protected:
 	UI* ui;
 	Game* game;
-	sf::RenderWindow* window;
 	int score = 0;
 	int lives = 0;
 };

@@ -53,6 +53,6 @@ void Asteroid::Update(float dt) {
     asteroidSprite->setPosition(asteroidPosition);
 }
 
-void Asteroid::Draw() {
+void Asteroid::Draw(sf::RenderWindow* window) {
     window->draw(*asteroidSprite);
 }

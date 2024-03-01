@@ -7,7 +7,7 @@ public :
     Bullet(sf::RenderWindow* window, const sf::Vector2f& initialPosition, const sf::Vector2f& initialDirection);
     ~Bullet() override;
     void Update(float dt) override;
-    void Draw() override;
+    void Draw(sf::RenderWindow* window) override;
     void OnCollision(GameObject* other) override;
     void ResetBullet(const sf::Vector2f& newPosition, const sf::Vector2f& newDirection);
 
