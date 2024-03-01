@@ -55,6 +55,6 @@ void Bullet::ResetBullet(const sf::Vector2f& newPosition, const sf::Vector2f& ne
 
 void Bullet::OnCollision(GameObject* other) {
     if (other->GetTag() == "Asteroid") {
-
+        EventEmitter::EmitEvent(BULLET_ASTEROID_COLLISION);
     }
 }

@@ -8,5 +8,7 @@ enum EventType {
 	REVERSE, // NOT required, buts its there if needed in the future
 	TURN_LEFT,
 	TURN_RIGHT,
-	FIRE
+	FIRE,
+	PLAYER_ASTEROID_COLLISION,
+	BULLET_ASTEROID_COLLISION
 };

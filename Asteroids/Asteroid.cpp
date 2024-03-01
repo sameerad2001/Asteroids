@@ -2,14 +2,15 @@
 #include <cstdlib>
 #include <ctime>
 
-Asteroid::Asteroid(sf::RenderWindow* window) {
+Asteroid::Asteroid(sf::RenderWindow* window, AsteroidType type) {
     this->window = window;
+    this->asteroidType = type;
 
     asteroidTexture.loadFromFile("Assets/Asteroid.png");
     asteroidSprite = new sf::Sprite();
     asteroidSprite->setTexture(asteroidTexture);
     asteroidSprite->setOrigin(asteroidTexture.getSize().x / 2.0f, asteroidTexture.getSize().y / 2.0f);
-    asteroidSprite->setScale(2, 2);
+    asteroidSprite->setScale(asteroidType, asteroidType);
 
     std::srand(static_cast<unsigned int>(std::time(nullptr))); // Random seed generation
     sf::Vector2u windowSize = window->getSize();

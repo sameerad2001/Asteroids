@@ -76,6 +76,6 @@ void Player::ReceiveEvent(const EventType eventType) {
 
 void Player::OnCollision(GameObject* other) {
     if (other->GetTag() == "Asteroid") {
-
+        EventEmitter::EmitEvent(PLAYER_ASTEROID_COLLISION);
     }
 }

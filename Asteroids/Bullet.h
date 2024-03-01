@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "EventSystem.h"
 #include "GameObject.h"
 
 class Bullet : public GameObject {

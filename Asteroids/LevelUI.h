@@ -15,7 +15,7 @@ public:
 	}
 	void Update(float dt) override {
 		score = game->GetScore();
-		score = game->GetLives();
+		lives = game->GetLives();
 	};
 	void Draw(sf::RenderWindow* window) override {
 		ui->setText("Score " + std::to_string(score));

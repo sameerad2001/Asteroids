@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Game.h"
 #include "LevelUI.h"
 
@@ -6,6 +5,7 @@ Game::Game(sf::RenderWindow* window) {
     this->window = window;
     engine = new Engine(window);
     EventEmitter::RegisterForEvent(FIRE, this);
+    EventEmitter::RegisterForEvent(PLAYER_ASTEROID_COLLISION, this);
 
     // Initializing game objects
     player = new Player(window);
@@ -33,17 +33,25 @@ void Game::Update(float dt) {
     engine->Update(dt);
     engine->Draw();
     timeSinceLastBullet += dt;
+    timeSinceDeath += dt;
 }
 
 void Game::ReceiveEvent(const EventType eventType) {
-    if (eventType != FIRE || timeSinceLastBullet < 1.0f / FIRE_RATE) return;
+    if (eventType == FIRE && timeSinceLastBullet > 1.0f / FIRE_RATE) {
 
-    for (Bullet* bullet : bulletPool) {
-        if (!bullet->GetIsActive()) {
-            bullet->ResetBullet(player->GetCenter(), player->GetDirection());
-            break;
+        for (Bullet* bullet : bulletPool) {
+            if (!bullet->GetIsActive()) {
+                bullet->ResetBullet(player->GetCenter(), player->GetDirection());
+                break;
+            }
         }
+        timeSinceLastBullet = 0;
     }
-    timeSinceLastBullet = 0;
+    if (eventType == PLAYER_ASTEROID_COLLISION && timeSinceDeath > AFTER_DEATH_COOLDOWN) {
+        lives--;
+        timeSinceDeath = 0;
+        player->SetPosition(sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2));
+        player->SetVelocity(sf::Vector2f(0, 0));
+    }
 }
 

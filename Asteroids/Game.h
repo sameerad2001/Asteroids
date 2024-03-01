@@ -31,7 +31,7 @@ protected :
     // Bullet pool
     std::vector<Bullet*> bulletPool;
     const int BULLET_POOL_SIZE = 30;
-    const float FIRE_RATE = 5.0f; // bullets per second
+    const float FIRE_RATE = 10.0f; // bullets per second
     float timeSinceLastBullet = 0;
 
     // Engine and window
@@ -42,4 +42,6 @@ protected :
     bool isGameOver = false;
     int score = 0;
     int lives = 3;
+    int AFTER_DEATH_COOLDOWN = 5;
+    float timeSinceDeath = 0;
 };
