@@ -18,6 +18,7 @@ void Engine::AddGameObject(GameObject* gameObject) {
 
 void Engine::Update(float dt) {
     for (auto gameObject : gameObjects) {
+        if (!gameObject) continue;
         if (!gameObject->GetIsActive()) continue;
         gameObject->Update(dt);
     }
@@ -33,9 +34,11 @@ void Engine::Draw() {
 
 void Engine::CheckCollisions() {
     for (int i = 0; i < gameObjects.size() - 1; i++) {
+        if (!gameObjects[i]) continue;
         if (!gameObjects[i]->GetIsActive() || !gameObjects[i]->GetPhysicsBody()) continue;
 
         for (int j = i + 1; j < gameObjects.size(); j++) {
+            if (!gameObjects[j]) continue;
             if (!gameObjects[j]->GetIsActive() || !gameObjects[j]->GetPhysicsBody()) continue;
 
             if (IsColliding(gameObjects[i], gameObjects[j])) {

@@ -1,29 +1,22 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <unordered_map>
+#include <stack>
 #include "Scene.h"
-#include "Game.h"
-#include "MainMenu.h"
-
-// These are currently coupled to the game
-enum SceneType {
-	MAIN_MENU,
-	GAME
-};
 
 class SceneManager {
 public:
-    static SceneManager* GetInstance(sf::RenderWindow* window);
+    static SceneManager* GetInstance();
     void Destroy();
 
+    void PushScene(Scene* scene);
+    void PopScene();
+    void ChangeScene(Scene* scene);
     void Update(float dt);
-    void ChangeScene(SceneType sceneType);
 
 private:
-    SceneManager(sf::RenderWindow* window);
-    ~SceneManager() {}
+    SceneManager() {};
+    ~SceneManager();
 
+    std::stack<Scene*> sceneStack;
     static SceneManager* instance;
-    Scene* currentScene;
-    sf::RenderWindow* window;
 };

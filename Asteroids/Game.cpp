@@ -36,11 +36,6 @@ Game::~Game() {
 }
 
 void Game::Update(float dt) {
-    if (isGameOver) {
-        SceneManager* sceneManger = SceneManager::GetInstance(window);
-        sceneManger->ChangeScene(MAIN_MENU);
-        return;
-    }
     engine->Update(dt);
     engine->Draw();
     timeSinceLastBullet += dt;
@@ -51,6 +46,13 @@ void Game::Update(float dt) {
 
     Asteroid* asteroid = SpawnAsteroid();
     if (asteroid) timeSinceLastAsteroid = 0;
+}
+
+void Game::TransitionScene()
+{
+    SceneManager* sceneManger = SceneManager::GetInstance();
+    sceneManger->PopScene();
+    return;
 }
 
 void Game::ReceiveEvent(const EventType eventType) {
@@ -71,7 +73,7 @@ void Game::ReceiveEvent(const EventType eventType) {
         player->SetVelocity(sf::Vector2f(0, 0));
 
         if (lives <= 0) { 
-            isGameOver = true;
+            isTransitioning = true;
             return;
         }
     }

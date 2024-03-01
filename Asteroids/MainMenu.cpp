@@ -8,18 +8,12 @@ MainMenu::MainMenu(sf::RenderWindow* window)
 }
 
 MainMenu::~MainMenu() {
+    EventEmitter::RemoveListner(this);
     delete ui;
 }
 
 void MainMenu::Update(float dt)
 {
-    if (isTransitioningScene) {
-        EventEmitter::RemoveListner(this);
-        SceneManager* sceneManger = SceneManager::GetInstance(window);
-        sceneManger->ChangeScene(GAME);
-        return;
-    }
-
 	sf::Vector2u windowSize = window->getSize();
 
     std::string titleText = "Asteroids";
@@ -51,6 +45,12 @@ void MainMenu::Update(float dt)
 void MainMenu::ReceiveEvent(EventType type)
 {
     if (type == GAME_START) {
-        isTransitioningScene = true;
+        isTransitioning = true;
     }
+}
+
+void MainMenu::TransitionScene()
+{
+    SceneManager* sceneManger = SceneManager::GetInstance();
+    sceneManger->PushScene(new Game(window));
 }

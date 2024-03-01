@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "MainMenu.h"
 #include "SceneManager.h"
 #include "InputSystem.h"
 
@@ -7,8 +7,8 @@ int main()
     sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(1024, 768), "LHG Code Exercise");
     sf::Clock GameClock;
 
-    SceneManager* sceneManager = SceneManager::GetInstance(window);
-    sceneManager->ChangeScene(MAIN_MENU);
+    SceneManager* sceneManager = SceneManager::GetInstance();
+    sceneManager->PushScene(new MainMenu(window));
 
     while (window->isOpen())
     {
@@ -25,7 +25,6 @@ int main()
         sceneManager->Update(dt.asSeconds());
         window->display();
     }
-
     sceneManager->Destroy();
     delete window;
     return 0;

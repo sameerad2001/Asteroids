@@ -1,42 +1,54 @@
 #include "SceneManager.h"
 
-SceneManager* SceneManager::instance;
+SceneManager* SceneManager::instance = nullptr;
 
-SceneManager::SceneManager(sf::RenderWindow* window) {
-    this->window = window;
-    this->currentScene = nullptr;
+SceneManager::~SceneManager() {
+    while (!sceneStack.empty()) {
+        delete sceneStack.top();
+        sceneStack.pop();
+    }
 }
 
-SceneManager* SceneManager::GetInstance(sf::RenderWindow* window) {
+SceneManager* SceneManager::GetInstance() {
     if (!instance)
-        instance = new SceneManager(window);
+        instance = new SceneManager();
     return instance;
 }
 
-void SceneManager::Destroy() {
+void SceneManager::Destroy()
+{
+    if (!instance)  return;
     delete instance;
     instance = nullptr;
 }
 
-void SceneManager::Update(float dt) {
-    if (currentScene == nullptr) return;
-    currentScene->Update(dt);
+void SceneManager::PushScene(Scene* scene) {
+    sceneStack.push(scene);
 }
 
-void SceneManager::ChangeScene(SceneType sceneType) {
-    if (currentScene) {
-        delete currentScene;
-        currentScene = nullptr;
-    }
+void SceneManager::PopScene() {
+    if (sceneStack.empty()) return;
+    delete sceneStack.top();
+    sceneStack.pop();
+    sceneStack.top()->isTransitioning = false;
+}
 
-    switch (sceneType) {
-    case GAME :
-        currentScene = new Game(window);
-        break;
-    case MAIN_MENU :
-        currentScene = new MainMenu(window);
-        break;
-    default:
-        break;
+void SceneManager::ChangeScene(Scene* scene) {
+    PopScene();
+    PushScene(scene);
+}
+
+void SceneManager::Update(float dt) {
+    if (sceneStack.empty()) return;
+
+    // NOTE :
+    // Scenes transitions take place in the subsequent frame after the "isTransitioning" bool is set.
+    // If transition occurs during the same frame there will be issues with dangling pointers 
+    // ... becaues Pop deletes the current scene.
+    if (sceneStack.top()->isTransitioning) {
+        sceneStack.top()->TransitionScene();
+        return;
     }
+    
+    sceneStack.top()->Update(dt);
 }

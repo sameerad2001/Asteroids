@@ -19,6 +19,7 @@ public :
     ~Game() override;
 
     void Update(float dt) override;
+    void TransitionScene() override;
 
     int GetScore() const { return score; };
     int GetLives() const { return lives; };
@@ -49,7 +50,6 @@ protected :
     sf::RenderWindow* window;
 
     // Game state
-    bool isGameOver = false;
     int score = 0;
-    int lives = 3;
+    int lives = 1;
 };
