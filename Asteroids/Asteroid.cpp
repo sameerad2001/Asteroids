@@ -6,7 +6,10 @@ Asteroid::Asteroid(sf::RenderWindow* window) {
     this->window = window;
 
     asteroidTexture.loadFromFile("Assets/Asteroid.png");
-    asteroidSprite.setTexture(asteroidTexture);
+    asteroidSprite = new sf::Sprite();
+    asteroidSprite->setTexture(asteroidTexture);
+    asteroidSprite->setOrigin(asteroidTexture.getSize().x / 2.0f, asteroidTexture.getSize().y / 2.0f);
+    asteroidSprite->setScale(2, 2);
 
     std::srand(static_cast<unsigned int>(std::time(nullptr))); // Random seed generation
     sf::Vector2u windowSize = window->getSize();
@@ -20,11 +23,22 @@ Asteroid::Asteroid(sf::RenderWindow* window) {
     float velX = std::cos(radians) * SPEED;
     float velY = std::sin(radians) * SPEED;
     asteroidVelocity = sf::Vector2f(velX, velY);
+
+    PhysicsBody* physicsBody = new PhysicsBody();
+    PhysicsVolume* physicVolume = new AABBVolume(asteroidSprite);
+    physicsBody->SetPhysicsVolume(physicVolume);
+    this->SetPhysicsBody(physicsBody);
+
+    this->SetTag("Asteroid");
+}
+
+Asteroid::~Asteroid() {
+    delete asteroidSprite;
 }
 
 void Asteroid::Update(float dt) {
     asteroidPosition += asteroidVelocity * dt;
-    asteroidSprite.setPosition(asteroidPosition);
+    asteroidSprite->setPosition(asteroidPosition);
 
     sf::Vector2u windowSize = window->getSize();
     if (asteroidPosition.x < 0)
@@ -36,9 +50,9 @@ void Asteroid::Update(float dt) {
     else if (asteroidPosition.y > windowSize.y)
         asteroidPosition.y = 0;
 
-    asteroidSprite.setPosition(asteroidPosition);
+    asteroidSprite->setPosition(asteroidPosition);
 }
 
 void Asteroid::Draw() {
-    window->draw(asteroidSprite);
+    window->draw(*asteroidSprite);
 }

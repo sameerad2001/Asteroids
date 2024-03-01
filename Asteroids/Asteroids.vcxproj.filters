@@ -83,5 +83,8 @@
     <ClInclude Include="Utility.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsBody.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

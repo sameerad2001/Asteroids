@@ -98,6 +98,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="LevelUI.h" />
+    <ClInclude Include="PhysicsBody.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="UISystem.h" />
     <ClInclude Include="Utility.h" />

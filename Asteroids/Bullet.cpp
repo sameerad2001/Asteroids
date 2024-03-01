@@ -2,16 +2,26 @@
 
 Bullet::Bullet(sf::RenderWindow* window, const sf::Vector2f& initialPosition, const sf::Vector2f& initialDirection) {
     bulletTexture.loadFromFile("Assets/Asteroid.png");
-    bulletSprite.setTexture(bulletTexture);
-    bulletSprite.setOrigin(bulletTexture.getSize().x / 2.0f, bulletTexture.getSize().y / 2.0f);
-    bulletSprite.setScale(0.3f, 0.3f);
+    bulletSprite = new sf::Sprite();
+    bulletSprite->setTexture(bulletTexture);
+    bulletSprite->setOrigin(bulletTexture.getSize().x / 2.0f, bulletTexture.getSize().y / 2.0f);\
+    bulletSprite->setScale(0.3f, 0.3f);
     bulletPosition = initialPosition;
     bulletDirection = initialDirection;
     bulletVelocity = sf::Vector2f(0, 0);
-    bulletSprite.setPosition(window->getView().getCenter());
+    bulletSprite->setPosition(window->getView().getCenter());
+
+    PhysicsBody* physicsBody = new PhysicsBody();
+    PhysicsVolume* physicVolume = new AABBVolume(bulletSprite);
+    physicsBody->SetPhysicsVolume(physicVolume);
+    this->SetPhysicsBody(physicsBody);
 
     timeLeft = LIFE_TIME;
     this->window = window;
+}
+
+Bullet::~Bullet(){
+    delete bulletSprite;
 }
 
 void Bullet::Update(float dt) {
@@ -27,12 +37,12 @@ void Bullet::Update(float dt) {
         SetIsActive(false);
     }
 
+    bulletSprite->setPosition(bulletPosition);
     timeLeft -= dt;
 }
 
 void Bullet::Draw() {
-    bulletSprite.setPosition(bulletPosition);
-    window->draw(bulletSprite);
+    window->draw(*bulletSprite);
 }
 
 void Bullet::ResetBullet(const sf::Vector2f& newPosition, const sf::Vector2f& newDirection)
@@ -41,4 +51,10 @@ void Bullet::ResetBullet(const sf::Vector2f& newPosition, const sf::Vector2f& ne
     bulletDirection = newDirection;
     timeLeft = LIFE_TIME;
     SetIsActive(true);
+}
+
+void Bullet::OnCollision(GameObject* other) {
+    if (other->GetTag() == "Asteroid") {
+
+    }
 }

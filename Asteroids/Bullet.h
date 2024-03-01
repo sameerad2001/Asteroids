@@ -5,14 +5,14 @@
 class Bullet : public GameObject {
 public :
     Bullet(sf::RenderWindow* window, const sf::Vector2f& initialPosition, const sf::Vector2f& initialDirection);
-    ~Bullet() override {};
+    ~Bullet() override;
     void Update(float dt) override;
     void Draw() override;
-    void OnCollisionBegin(GameObject* other) override {};
+    void OnCollision(GameObject* other) override;
     void ResetBullet(const sf::Vector2f& newPosition, const sf::Vector2f& newDirection);
 
 protected :
-    sf::Sprite bulletSprite;
+    sf::Sprite* bulletSprite;
     sf::Texture bulletTexture;
     sf::Vector2f bulletPosition;
     sf::Vector2f bulletDirection;
