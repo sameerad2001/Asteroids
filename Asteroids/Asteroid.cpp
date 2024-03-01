@@ -11,32 +11,7 @@ std::unordered_map<AsteroidType, float> scaleFactors = {
 Asteroid::Asteroid(sf::RenderWindow* window, AsteroidType type) {
     this->window = window;
     this->asteroidType = type;
-
-    asteroidTexture.loadFromFile("Assets/Asteroid.png");
-    asteroidSprite = new sf::Sprite();
-    asteroidSprite->setTexture(asteroidTexture);
-    asteroidSprite->setOrigin(asteroidTexture.getSize().x / 2.0f, asteroidTexture.getSize().y / 2.0f);
-    asteroidSprite->setScale(asteroidType * 0.3, asteroidType * 0.3);
-
-    std::srand(static_cast<unsigned int>(std::time(nullptr))); // Random seed generation
-    sf::Vector2u windowSize = window->getSize();
-    float posX = static_cast<float>(std::rand() % windowSize.x);
-    float posY = static_cast<float>(std::rand() % windowSize.y);
-    asteroidPosition = sf::Vector2f(posX, posY);
-
-    float angle = static_cast<float>(std::rand() % 360);
-    float radians = angle * (3.14 / 180.0f);
-    static const float SPEED = 100.0f;
-    float velX = std::cos(radians) * SPEED;
-    float velY = std::sin(radians) * SPEED;
-    asteroidVelocity = sf::Vector2f(velX, velY);
-
-    PhysicsBody* physicsBody = new PhysicsBody();
-    PhysicsVolume* physicVolume = new AABBVolume(asteroidSprite);
-    physicsBody->SetPhysicsVolume(physicVolume);
-    this->SetPhysicsBody(physicsBody);
-
-    this->SetTag("Asteroid");
+    InitializeAsteroid();
 }
 
 Asteroid::~Asteroid() {
@@ -62,4 +37,51 @@ void Asteroid::Update(float dt) {
 
 void Asteroid::Draw(sf::RenderWindow* window) {
     window->draw(*asteroidSprite);
+}
+
+void Asteroid::ResetAsteroid(AsteroidType type) {
+    if(type == 0)
+        asteroidType = static_cast<AsteroidType>(std::rand() % 3 + 1);
+    
+    InitializeAsteroid();
+    SetIsActive(true); // Reactivate the asteroid
+}
+
+void Asteroid::InitializeAsteroid() {
+    asteroidTexture.loadFromFile("Assets/Asteroid.png");
+    asteroidSprite = new sf::Sprite();
+    asteroidSprite->setTexture(asteroidTexture);
+    asteroidSprite->setOrigin(asteroidTexture.getSize().x / 2.0f, asteroidTexture.getSize().y / 2.0f);
+    asteroidSprite->setScale(scaleFactors[asteroidType], scaleFactors[asteroidType]);
+    asteroidPosition = GetRandomPosition();
+    float angle = static_cast<float>(std::rand() % 360);
+    float radians = angle * (3.14 / 180.0f);
+    static const float SPEED = 100.0f;
+    float velX = std::cos(radians) * SPEED;
+    float velY = std::sin(radians) * SPEED;
+    asteroidVelocity = sf::Vector2f(velX, velY);
+    PhysicsBody* physicsBody = new PhysicsBody();
+    PhysicsVolume* physicVolume = new AABBVolume(asteroidSprite);
+    physicsBody->SetPhysicsVolume(physicVolume);
+    this->SetPhysicsBody(physicsBody);
+    this->SetTag("Asteroid");
+}
+
+
+sf::Vector2f Asteroid::GetRandomPosition() const {
+    float posX, posY;
+    sf::Vector2u windowSize = window->getSize();
+    if (std::rand() % 2 == 0) {
+        // Left/Right
+        posX = std::rand() % 2 == 0 ? -((int)asteroidTexture.getSize().x) : windowSize.x;
+        posY = std::rand() % windowSize.y;
+    }
+    else {
+        // Top/Bottom
+        posX = std::rand() % windowSize.x;
+        posY = std::rand() % 2 == 0 ? -((int)asteroidTexture.getSize().y) : windowSize.y;
+    }
+
+    sf::Vector2f position = sf::Vector2f(posX, posY);
+    return position;
 }

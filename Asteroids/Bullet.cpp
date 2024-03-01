@@ -1,5 +1,4 @@
 #include "Bullet.h"
-#include <iostream>
 
 Bullet::Bullet(sf::RenderWindow* window, const sf::Vector2f& initialPosition, const sf::Vector2f& initialDirection) {
     bulletTexture.loadFromFile("Assets/Asteroid.png");
@@ -65,9 +64,7 @@ void Bullet::OnCollision(GameObject* other) {
             asteroid->SetIsActive(false);
             return;
         }
-        std::cout << "Before :" << (int)asteroid->GetAsteroidType() << "\n";
         asteroid->SetAsteroidType(static_cast<AsteroidType>(type - 1));
-        std::cout << "After :" << (int)asteroid->GetAsteroidType() << "\n";
         timeSinceCollision = 0;
     }
 }

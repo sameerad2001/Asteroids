@@ -30,14 +30,17 @@ protected :
     // Bullet pool
     std::vector<Bullet*> bulletPool;
     const int BULLET_POOL_SIZE = 30;
-    const float FIRE_RATE = 10.0f; // <rate> bullets per second
+    const float FIRE_RATE = 12.0f; // <rate> bullets per second
     float timeSinceLastBullet = 0;
 
     // Asteroids
+    std::vector<Asteroid*> asteroidPool;
+    const int ASTEROID_POOL_SIZE = 30;
     float timeSinceLastAsteroid = 0;
-    int ASTEROID_SPAWN_TIME = 5; // asteroid every <time> second
+    int ASTEROID_SPAWN_TIME = 5; // asteroid every <time> second(s)
     int AFTER_DEATH_GRACE_PERIOD = 5;
     float timeSinceDeath = 0;
+    Asteroid* SpawnAsteroid();
 
     // Engine and window
     Engine* engine;

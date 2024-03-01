@@ -23,6 +23,7 @@ public :
 		asteroidType = type; 
 		asteroidSprite->setScale(scaleFactors[type], scaleFactors[type]);
 	}
+	void ResetAsteroid(AsteroidType type = (AsteroidType)0);
 	AsteroidType GetAsteroidType() const { return asteroidType; }
 
 protected :
@@ -32,6 +33,8 @@ protected :
 	sf::Texture asteroidTexture;
 	sf::Vector2f asteroidPosition; 
 	sf::Vector2f asteroidVelocity;
-
 	AsteroidType asteroidType;
+
+	void InitializeAsteroid();
+	sf::Vector2f GetRandomPosition() const;
 };
