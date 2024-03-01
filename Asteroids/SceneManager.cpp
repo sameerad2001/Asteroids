@@ -19,21 +19,22 @@ void SceneManager::Destroy() {
 }
 
 void SceneManager::Update(float dt) {
-    if (!currentScene) return;
+    if (currentScene == nullptr) return;
     currentScene->Update(dt);
 }
 
 void SceneManager::ChangeScene(SceneType sceneType) {
-    if (currentScene)
+    if (currentScene) {
         delete currentScene;
+        currentScene = nullptr;
+    }
 
     switch (sceneType) {
-    case GAME:
+    case GAME :
         currentScene = new Game(window);
         break;
     case MAIN_MENU :
         currentScene = new MainMenu(window);
-        break;
         break;
     default:
         break;

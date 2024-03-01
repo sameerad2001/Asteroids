@@ -4,7 +4,7 @@
 #include "GameObject.h"
 #include "PhysicsBody.h"
 
-class Player : public EventListener, public GameObject {
+class Player : public GameObject, public EventListener {
 public :
     Player(sf::RenderWindow* window);
     ~Player() override;

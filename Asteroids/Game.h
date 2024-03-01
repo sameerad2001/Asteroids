@@ -16,7 +16,7 @@ class Game : public EventListener, public Scene
 {
 public :
     Game(sf::RenderWindow* window);
-    ~Game();
+    ~Game() override;
 
     void Update(float dt) override;
 

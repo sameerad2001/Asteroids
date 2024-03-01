@@ -15,6 +15,8 @@ void EventEmitter::EmitEvent(const EventType& eventType) {
 }
 
 void EventEmitter::RemoveListner(EventListener* l) {
+    if (l == nullptr) return;
+
     for (auto it = listeners.begin(); it != listeners.end();) {
         if (it->second == l)
             it = listeners.erase(it);

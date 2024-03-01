@@ -32,9 +32,15 @@ Game::Game(sf::RenderWindow* window) {
 
 Game::~Game() {
     delete engine;
+    EventEmitter::RemoveListner(this);
 }
 
 void Game::Update(float dt) {
+    if (isGameOver) {
+        SceneManager* sceneManger = SceneManager::GetInstance(window);
+        sceneManger->ChangeScene(MAIN_MENU);
+        return;
+    }
     engine->Update(dt);
     engine->Draw();
     timeSinceLastBullet += dt;
@@ -63,6 +69,11 @@ void Game::ReceiveEvent(const EventType eventType) {
         timeSinceDeath = 0;
         player->SetPosition(sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2));
         player->SetVelocity(sf::Vector2f(0, 0));
+
+        if (lives <= 0) { 
+            isGameOver = true;
+            return;
+        }
     }
     if (eventType == BULLET_ASTEROID_COLLISION) {
         score++;

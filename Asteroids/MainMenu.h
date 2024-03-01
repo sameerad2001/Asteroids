@@ -6,11 +6,12 @@
 class MainMenu : public Scene, public EventListener {
 public :
 	MainMenu(sf::RenderWindow* window) ;
-	~MainMenu();
+	~MainMenu() override;
 	void Update(float dt) override;
 	void ReceiveEvent(EventType type) override;
 
 protected :
 	UI* ui;
 	sf::RenderWindow* window;
+	bool isTransitioningScene = false;
 };
