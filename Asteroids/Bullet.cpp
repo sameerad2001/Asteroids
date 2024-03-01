@@ -56,6 +56,7 @@ void Bullet::ResetBullet(const sf::Vector2f& newPosition, const sf::Vector2f& ne
 
 void Bullet::OnCollision(GameObject* other) {
     if (other->GetTag() == "Asteroid" && timeSinceCollision > COLLISION_GRACE_PERIOD) {
+        SetIsActive(false);
         EventEmitter::EmitEvent(BULLET_ASTEROID_COLLISION);
         Asteroid* asteroid = dynamic_cast<Asteroid*>(other);
         AsteroidType type = asteroid->GetAsteroidType();

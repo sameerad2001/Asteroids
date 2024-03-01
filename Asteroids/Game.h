@@ -51,5 +51,5 @@ protected :
 
     // Game state
     int score = 0;
-    int lives = 1;
+    int lives = 3;
 };

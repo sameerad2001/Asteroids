@@ -17,8 +17,10 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window->close();
-            InputSystem::UpdateInputSystem(event);
+            InputSystem::ReceiveEvent(event);
         }
+        InputSystem::Update();
+
         sf::Time dt = GameClock.restart();
 
         window->clear();

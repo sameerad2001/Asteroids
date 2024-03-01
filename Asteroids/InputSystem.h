@@ -5,7 +5,8 @@
 
 class InputSystem {
 public :
-	static void UpdateInputSystem(sf::Event event);
+	static void ReceiveEvent(sf::Event event);
+	static void Update();
 
 protected:
 	static std::unordered_map<sf::Keyboard::Key, EventType> keyEvents;
