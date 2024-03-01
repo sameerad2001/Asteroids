@@ -87,6 +87,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
@@ -100,6 +101,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="LevelUI.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="PhysicsBody.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />

@@ -3,7 +3,9 @@
 #include <unordered_map>
 #include "Scene.h"
 #include "Game.h"
+#include "MainMenu.h"
 
+// These are currently coupled to the game
 enum SceneType {
 	MAIN_MENU,
 	GAME

@@ -8,7 +8,7 @@ int main()
     sf::Clock GameClock;
 
     SceneManager* sceneManager = SceneManager::GetInstance(window);
-    sceneManager->ChangeScene(GAME);
+    sceneManager->ChangeScene(MAIN_MENU);
 
     while (window->isOpen())
     {

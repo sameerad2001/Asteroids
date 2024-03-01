@@ -20,15 +20,27 @@ public:
         text.setPosition(position);
     }
 
-    void setText(const std::string& newText) {
+    void SetText(const std::string& newText) {
         text.setString(newText);
     }
 
-    void setPosition(const sf::Vector2f& newPosition) {
+    void SetPosition(const sf::Vector2f& newPosition) {
         text.setPosition(newPosition);
     }
 
-    void draw(sf::RenderWindow* window) {
+    void SetColor(const sf::Color& newColor) {
+        text.setFillColor(newColor);
+    }
+
+    void SetCharacterSize(unsigned int newSize) {
+        text.setCharacterSize(newSize);
+    }
+
+    unsigned int GetCharecterSize() {
+        return text.getCharacterSize();
+    }
+
+    void Draw(sf::RenderWindow* window) {
         window->draw(text);
     }
 };

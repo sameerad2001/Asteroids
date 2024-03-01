@@ -7,7 +7,8 @@ std::unordered_map<sf::Keyboard::Key, EventType> InputSystem::keyEvents = {
     {sf::Keyboard::Down,    REVERSE},
     {sf::Keyboard::Right,   TURN_RIGHT},
     {sf::Keyboard::Left,    TURN_LEFT},
-    {sf::Keyboard::Space,   FIRE}
+    {sf::Keyboard::Space,   FIRE},
+    {sf::Keyboard::Enter,   GAME_START}
 };
 
 void InputSystem::UpdateInputSystem(sf::Event event) {

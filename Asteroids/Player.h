@@ -31,5 +31,5 @@ protected :
 
     const int PLAYER_SPEED = 200;
     const int TURN_SPEED = 3500;
-    const int SPEED_LOSS_FACTOR = 0.5;
+    const float SPEED_LOSS_FACTOR = 0.5;
 };

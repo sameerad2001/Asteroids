@@ -18,13 +18,13 @@ public:
 		lives = game->GetLives();
 	};
 	void Draw(sf::RenderWindow* window) override {
-		ui->setText("Score " + std::to_string(score));
-		ui->setPosition(sf::Vector2f(10, 10));
-		ui->draw(window);
+		ui->SetText("Score " + std::to_string(score));
+		ui->SetPosition(sf::Vector2f(10, 10));
+		ui->Draw(window);
 
-		ui->setText("Lives " + std::to_string(lives));
-		ui->setPosition(sf::Vector2f(10, 35));
-		ui->draw(window);
+		ui->SetText("Lives " + std::to_string(lives));
+		ui->SetPosition(sf::Vector2f(10, 35));
+		ui->Draw(window);
 	}
 	void OnCollision(GameObject* other) override {};
 

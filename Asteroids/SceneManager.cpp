@@ -32,6 +32,8 @@ void SceneManager::ChangeScene(SceneType sceneType) {
         currentScene = new Game(window);
         break;
     case MAIN_MENU :
+        currentScene = new MainMenu(window);
+        break;
         break;
     default:
         break;
