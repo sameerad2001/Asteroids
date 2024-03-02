@@ -45,7 +45,7 @@ protected :
     float MAX_SPAWN_RATE = 1 / 2.0f; 
     float SPAWN_RATE_INCREASE = 1 / 10.0f;
     int AFTER_DEATH_GRACE_PERIOD = 5;
-    float timeSinceDeath = 0;
+    float timeSinceDeath = AFTER_DEATH_GRACE_PERIOD + 1;
 
     // Engine and window
     Engine* engine;
