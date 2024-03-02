@@ -15,15 +15,10 @@ Game::Game(sf::RenderWindow* window) {
     levelUI = new LevelUI(this);
     engine->AddGameObject(levelUI);
 
-    for (int i = 0; i < ASTEROID_POOL_SIZE; i++) {
-        Asteroid* asteroid = new Asteroid(window);
-        asteroid->SetIsActive(false);
-        asteroidPool.push_back(asteroid);
-        engine->AddGameObject(asteroid);
-    }
+    asteroidPool = new AsteroidPool(window, engine);
 
     for (int i = 0; i < BULLET_POOL_SIZE; i++) {
-        Bullet* bullet = new Bullet(window, sf::Vector2f(0, 0), sf::Vector2f(0, 0));
+        Bullet* bullet = new Bullet(window, sf::Vector2f(0, 0), sf::Vector2f(0, 0), asteroidPool);
         bullet->SetIsActive(false);
         bulletPool.push_back(bullet);
         engine->AddGameObject(bullet);
@@ -31,7 +26,8 @@ Game::Game(sf::RenderWindow* window) {
 }
 
 Game::~Game() {
-    delete engine;
+    delete asteroidPool;
+    delete engine; // engine automatically deletes game objects
     EventEmitter::RemoveListner(this);
 }
 
@@ -44,7 +40,7 @@ void Game::Update(float dt) {
 
     if (timeSinceLastAsteroid < ASTEROID_SPAWN_TIME) return;
 
-    Asteroid* asteroid = SpawnAsteroid();
+    Asteroid* asteroid = asteroidPool->SpawnAsteroid();
     if (asteroid) timeSinceLastAsteroid = 0;
 }
 
@@ -80,14 +76,4 @@ void Game::ReceiveEvent(const EventType eventType) {
     if (eventType == BULLET_ASTEROID_COLLISION) {
         score++;
     }
-}
-
-Asteroid* Game::SpawnAsteroid() {
-    for (Asteroid* asteroid : asteroidPool) {
-        if (!asteroid->GetIsActive()) {
-            asteroid->ResetAsteroid();
-            return asteroid;
-        }
-    }
-    return nullptr;
 }

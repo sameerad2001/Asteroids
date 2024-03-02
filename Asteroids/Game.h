@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "Asteroid.h"
+#include "AsteroidPool.h"
 #include "Bullet.h"
 #include "Engine.h"
 #include "EventSystem.h"
@@ -37,13 +38,11 @@ protected :
     float timeSinceLastBullet = 0;
 
     // Asteroids
-    std::vector<Asteroid*> asteroidPool;
-    const int ASTEROID_POOL_SIZE = 30;
+    AsteroidPool* asteroidPool;
     float timeSinceLastAsteroid = 0;
     int ASTEROID_SPAWN_TIME = 5; // asteroid every <time> second(s)
     int AFTER_DEATH_GRACE_PERIOD = 5;
     float timeSinceDeath = 0;
-    Asteroid* SpawnAsteroid();
 
     // Engine and window
     Engine* engine;

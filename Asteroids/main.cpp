@@ -4,7 +4,7 @@
 
 int main()
 {
-    sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(1024, 768), "LHG Code Exercise");
+    sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(1024, 768), "Asteroids!");
     sf::Clock GameClock;
 
     SceneManager* sceneManager = SceneManager::GetInstance();

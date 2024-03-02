@@ -18,14 +18,18 @@ public :
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow* window) override;
 	void OnCollision(GameObject* other) override {};
+	void ResetAsteroid(AsteroidType type = (AsteroidType)0);
+	void ResetAsteroid(const sf::Vector2f& position, const sf::Vector2f& velocity, AsteroidType type = (AsteroidType)0);
+	
+	AsteroidType GetAsteroidType()	const { return asteroidType; }
+	sf::Vector2f GetPosition()		const { return asteroidPosition; }
+	sf::Vector2f GetVelocity()		const { return asteroidVelocity; }
 
 	void SetAsteroidType(const AsteroidType& type) { 
 		asteroidType = type; 
 		asteroidSprite->setScale(scaleFactors[type], scaleFactors[type]);
 	}
-	void ResetAsteroid(AsteroidType type = (AsteroidType)0);
-	AsteroidType GetAsteroidType() const { return asteroidType; }
-
+	
 protected :
 	sf::RenderWindow* window;
 

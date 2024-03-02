@@ -1,6 +1,11 @@
 #include "Bullet.h"
 
-Bullet::Bullet(sf::RenderWindow* window, const sf::Vector2f& initialPosition, const sf::Vector2f& initialDirection) {
+Bullet::Bullet(
+    sf::RenderWindow* window, 
+    const sf::Vector2f& initialPosition, 
+    const sf::Vector2f& initialDirection, 
+    AsteroidPool* asteroidPool) 
+{
     bulletTexture.loadFromFile("Assets/Asteroid.png");
     bulletSprite = new sf::Sprite();
     bulletSprite->setTexture(bulletTexture);
@@ -18,6 +23,7 @@ Bullet::Bullet(sf::RenderWindow* window, const sf::Vector2f& initialPosition, co
 
     timeLeft = LIFE_TIME;
     this->window = window;
+    this->asteroidPool = asteroidPool;
 }
 
 Bullet::~Bullet(){
@@ -56,6 +62,7 @@ void Bullet::ResetBullet(const sf::Vector2f& newPosition, const sf::Vector2f& ne
 
 void Bullet::OnCollision(GameObject* other) {
     if (other->GetTag() == "Asteroid" && timeSinceCollision > COLLISION_GRACE_PERIOD) {
+        timeSinceCollision = 0;
         SetIsActive(false);
         EventEmitter::EmitEvent(BULLET_ASTEROID_COLLISION);
         Asteroid* asteroid = dynamic_cast<Asteroid*>(other);
@@ -65,7 +72,7 @@ void Bullet::OnCollision(GameObject* other) {
             asteroid->SetIsActive(false);
             return;
         }
-        asteroid->SetAsteroidType(static_cast<AsteroidType>(type - 1));
-        timeSinceCollision = 0;
+
+        asteroidPool->SplitAsteroid(asteroid);
     }
 }

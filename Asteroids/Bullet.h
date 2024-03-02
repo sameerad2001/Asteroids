@@ -1,12 +1,17 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Asteroid.h"
+#include "AsteroidPool.h"
 #include "EventSystem.h"
 #include "GameObject.h"
 
 class Bullet : public GameObject {
 public :
-    Bullet(sf::RenderWindow* window, const sf::Vector2f& initialPosition, const sf::Vector2f& initialDirection);
+    Bullet(
+        sf::RenderWindow* window, 
+        const sf::Vector2f& initialPosition, 
+        const sf::Vector2f& initialDirection, 
+        AsteroidPool* asteroidPool);
     ~Bullet() override;
     void Update(float dt) override;
     void Draw(sf::RenderWindow* window) override;
@@ -27,4 +32,6 @@ protected :
 
     float timeSinceCollision = 0;
     int COLLISION_GRACE_PERIOD = 1; // Otherwise there will be multiple collisions
+
+    AsteroidPool* asteroidPool; // Required because after bullet collision asteroids must be split
 };

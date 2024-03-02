@@ -40,11 +40,23 @@ void Asteroid::Draw(sf::RenderWindow* window) {
 }
 
 void Asteroid::ResetAsteroid(AsteroidType type) {
-    if(type == 0)
-        asteroidType = static_cast<AsteroidType>(std::rand() % 3 + 1);
-    
+    if (type == 0)
+        type = static_cast<AsteroidType>(std::rand() % 3 + 1);
+
+    asteroidType = type;
     InitializeAsteroid();
-    SetIsActive(true); // Reactivate the asteroid
+    SetIsActive(true);
+}
+
+void Asteroid::ResetAsteroid(const sf::Vector2f& position, const sf::Vector2f& velocity, AsteroidType type) {
+    if (type == 0)
+        type = static_cast<AsteroidType>(std::rand() % 3 + 1);
+
+    asteroidType = type;
+    InitializeAsteroid();
+    asteroidPosition = position;
+    asteroidVelocity = velocity;
+    SetIsActive(true);
 }
 
 void Asteroid::InitializeAsteroid() {
