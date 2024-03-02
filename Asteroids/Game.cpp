@@ -38,7 +38,10 @@ void Game::Update(float dt) {
     timeSinceDeath += dt;
     timeSinceLastAsteroid += dt;
 
-    if (timeSinceLastAsteroid < ASTEROID_SPAWN_TIME) return;
+    spawnRate += SPAWN_RATE_INCREASE * dt;
+    spawnRate = std::min(spawnRate, MAX_SPAWN_RATE);
+
+    if (timeSinceLastAsteroid < (1.0f / spawnRate)) return;
 
     Asteroid* asteroid = asteroidPool->SpawnAsteroid();
     if (asteroid) timeSinceLastAsteroid = 0;
