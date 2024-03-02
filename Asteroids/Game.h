@@ -5,13 +5,13 @@
 #include "Asteroid.h"
 #include "AsteroidPool.h"
 #include "Bullet.h"
-#include "Engine.h"
 #include "EndScreen.h"
+#include "Engine.h"
 #include "EventSystem.h"
 #include "Player.h"
-#include "UISystem.h"
 #include "Scene.h"
 #include "SceneManager.h"
+#include "UISystem.h"
 
 class LevelUI;
 class Game : public EventListener, public Scene

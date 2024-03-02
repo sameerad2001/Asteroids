@@ -55,25 +55,15 @@ bool Engine::IsColliding(GameObject* obj1, GameObject* obj2) {
 
     if (!volume1 || !volume2) return false;
 
-    if (volume1->volumeType == AABB) {
-        switch (volume2->volumeType) {
-        case AABB:
-            return AABBvsAABBCollision(static_cast<AABBVolume*>(volume1), static_cast<AABBVolume*>(volume2));
-        case SPHERE:
-            return AABBvsSphereCollision(static_cast<AABBVolume*>(volume1), static_cast<SphereVolume*>(volume2));
-        default:
-            return false;
-        }
-    }
-    else if (volume1->volumeType == SPHERE) {
-        switch (volume2->volumeType) {
-        case AABB:
-            return AABBvsSphereCollision(static_cast<AABBVolume*>(volume2), static_cast<SphereVolume*>(volume1));
-        case SPHERE:
-            return SpherevsSphereCollision(static_cast<SphereVolume*>(volume1), static_cast<SphereVolume*>(volume2));;
-        default:
-            return false;
-        }
+    switch (volume1->volumeType) {
+    case AABB :
+        return AABBCollisionFunctions[volume2->volumeType](volume1, volume2);
+        break;
+    case SPHERE :
+        return SphereCollisionFunctions[volume2->volumeType](volume1, volume2);
+        break;
+    default :
+        return false;
     }
     
     return false;
@@ -114,3 +104,27 @@ bool Engine::SpherevsSphereCollision(const SphereVolume* sphere1, const SphereVo
 
     return distance <= (radius1 + radius2);
 }
+
+std::unordered_map<VolumeType, CollisionDetectionFuntion> Engine::AABBCollisionFunctions = {
+    std::make_pair(AABB,
+    [](const PhysicsVolume* vol1, const PhysicsVolume* vol2) -> bool {
+        return Engine::AABBvsAABBCollision(static_cast<const AABBVolume*>(vol1), static_cast<const AABBVolume*>(vol2));
+    }),
+
+    std::make_pair(SPHERE,
+    [](const PhysicsVolume* vol1, const PhysicsVolume* vol2) -> bool {
+        return AABBvsSphereCollision(static_cast<const AABBVolume*>(vol1), static_cast<const SphereVolume*>(vol2));
+    })
+};
+
+std::unordered_map<VolumeType, CollisionDetectionFuntion> Engine::SphereCollisionFunctions = {
+    std::make_pair(AABB,
+    [](const PhysicsVolume* vol1, const PhysicsVolume* vol2) -> bool {
+        return Engine::AABBvsSphereCollision(static_cast<const AABBVolume*>(vol2), static_cast<const SphereVolume*>(vol1));
+    }),
+
+    std::make_pair(SPHERE,
+    [](const PhysicsVolume* vol1, const PhysicsVolume* vol2) -> bool {
+        return SpherevsSphereCollision(static_cast<const SphereVolume*>(vol1), static_cast<const SphereVolume*>(vol2));
+    })
+};
