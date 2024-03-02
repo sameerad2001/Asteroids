@@ -42,9 +42,7 @@ void MainMenu::Update(float dt)
 
 void MainMenu::ReceiveEvent(EventType type)
 {
-    if (type == GAME_START) {
-        isTransitioning = true;
-    }
+    if (type == GAME_START) isTransitioning = true;
 }
 
 void MainMenu::TransitionScene()

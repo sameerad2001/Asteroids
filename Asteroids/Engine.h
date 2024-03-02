@@ -18,7 +18,7 @@ public:
     void CheckCollisions();
 
 private:
-    static bool IsColliding(GameObject* obj1, GameObject* obj2);
+    bool IsColliding(GameObject* obj1, GameObject* obj2);
     static bool AABBvsAABBCollision(const AABBVolume* aabb1, const AABBVolume* aabb2);
     static bool AABBvsSphereCollision(const AABBVolume* aabb, const SphereVolume* sphere);
     static bool SpherevsSphereCollision(const SphereVolume* sphere1, const SphereVolume* sphere2);

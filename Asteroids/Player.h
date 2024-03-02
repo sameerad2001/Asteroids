@@ -14,7 +14,6 @@ public :
     void ReceiveEvent(const EventType eventType) override;
     sf::Vector2f GetPosition() const { return playerPosition; };
     sf::Vector2f GetDirection() const { return playerDirection; };
-    sf::Vector2f GetCenter() const { return playerPosition + (playerSprite->getScale() * 0.5f); }
     void SetPosition(const sf::Vector2f& newPosition) { playerPosition = newPosition; };
     void SetVelocity(const sf::Vector2f& newVelocity) { playerVelocity = newVelocity; };
 

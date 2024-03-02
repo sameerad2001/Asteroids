@@ -43,6 +43,6 @@ void AsteroidPool::SplitAsteroid(Asteroid* asteroid)
     sf::Vector2f velocity = asteroid->GetVelocity();
 
     asteroid->SetAsteroidType(newType);
-    Asteroid* newAsteroid1 = SpawnAsteroid(position, -1.0f * velocity, newType);
+    SpawnAsteroid(position, -1.0f * velocity, newType);
 }
 

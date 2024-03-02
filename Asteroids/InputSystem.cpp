@@ -3,7 +3,7 @@
 
 std::unordered_map<sf::Keyboard::Key, bool> InputSystem::keysPressed;
 
-std::unordered_map<sf::Keyboard::Key, EventType> InputSystem::keyEvents = {
+std::unordered_map<sf::Keyboard::Key, EventType> InputSystem::keyEventMap = {
     {sf::Keyboard::Up,      THRUST},
     {sf::Keyboard::Down,    REVERSE},
     {sf::Keyboard::Right,   TURN_RIGHT},
@@ -24,8 +24,8 @@ void InputSystem::ReceiveEvent(sf::Event event) {
 void InputSystem::Update() {
     for (const auto& kvp : keysPressed) {
         if (kvp.second) {
-            auto iter = keyEvents.find(kvp.first);
-            if (iter != keyEvents.end()) {
+            auto iter = keyEventMap.find(kvp.first);
+            if (iter != keyEventMap.end()) {
                 EventEmitter::EmitEvent(iter->second);
             }
         }

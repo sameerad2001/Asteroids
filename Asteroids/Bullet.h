@@ -30,8 +30,8 @@ protected :
     const int LIFE_TIME = 10; //seconds
     const int SPEED = 1000;
 
-    float timeSinceCollision = 0;
-    int COLLISION_GRACE_PERIOD = 1; // Otherwise there will be multiple collisions
+    int COLLISION_GRACE_PERIOD = 0.1; // Otherwise there will be multiple collisions
+    float timeSinceCollision = COLLISION_GRACE_PERIOD + 10;
 
-    AsteroidPool* asteroidPool; // Required because after bullet collision asteroids must be split
+    AsteroidPool* asteroidPool; // Required because after bullet collision, asteroids must be split
 };

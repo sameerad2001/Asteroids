@@ -37,7 +37,6 @@ void Game::Update(float dt) {
     timeSinceLastBullet += dt;
     timeSinceDeath += dt;
     timeSinceLastAsteroid += dt;
-
     spawnRate += SPAWN_RATE_INCREASE * dt;
     spawnRate = std::min(spawnRate, MAX_SPAWN_RATE);
 
@@ -59,7 +58,7 @@ void Game::ReceiveEvent(const EventType eventType) {
 
         for (Bullet* bullet : bulletPool) {
             if (!bullet->GetIsActive()) {
-                bullet->ResetBullet(player->GetCenter(), player->GetDirection());
+                bullet->ResetBullet(player->GetPosition(), player->GetDirection());
                 break;
             }
         }

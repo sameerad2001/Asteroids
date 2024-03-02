@@ -9,6 +9,6 @@ public :
 	static void Update();
 
 protected:
-	static std::unordered_map<sf::Keyboard::Key, EventType> keyEvents;
+	static std::unordered_map<sf::Keyboard::Key, EventType> keyEventMap;
 	static std::unordered_map<sf::Keyboard::Key, bool> keysPressed;
 };

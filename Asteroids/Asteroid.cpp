@@ -20,9 +20,8 @@ Asteroid::~Asteroid() {
 
 void Asteroid::Update(float dt) {
     asteroidPosition += asteroidVelocity * dt;
-    asteroidSprite->setPosition(asteroidPosition);
-
     sf::Vector2u windowSize = window->getSize();
+
     if (asteroidPosition.x < 0)
         asteroidPosition.x = windowSize.x;
     else if (asteroidPosition.x > windowSize.x)

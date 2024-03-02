@@ -1,7 +1,7 @@
 #pragma once
 
 // Event types are coupled to the current game
-// I could replace this with strings to decouple event types from the game...
+// I could replace these with strings to decouple event types from the game...
 // but then there would be a higher likelyhood of typos
 enum EventType {
 	THRUST,

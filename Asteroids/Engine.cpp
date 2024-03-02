@@ -27,6 +27,7 @@ void Engine::Update(float dt) {
 
 void Engine::Draw() {
     for (auto gameObject : gameObjects) {
+        if (!gameObject) continue;
         if (!gameObject->GetIsActive()) continue;
         gameObject->Draw(window);
     }

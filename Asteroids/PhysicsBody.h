@@ -28,7 +28,8 @@ struct SphereVolume : public PhysicsVolume {
 	}
 	float GetRadius() const { 
 		sf::FloatRect bounds = sprite->getGlobalBounds();
-		float radius = std::sqrtf(bounds.width * bounds.width + bounds.height * bounds.height) / 2.0f;
+		//float radius = std::sqrtf(bounds.width * bounds.width + bounds.height * bounds.height) / 2.0f;
+		float radius = std::max(bounds.width, bounds.height) / 2.0f;
 		return radius;
 	}
 	sf::Vector2f GetGlobalCenter() const { return sprite->getPosition(); }

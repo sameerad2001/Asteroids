@@ -14,7 +14,7 @@ Bullet::Bullet(
     bulletPosition = initialPosition;
     bulletDirection = initialDirection;
     bulletVelocity = sf::Vector2f(0, 0);
-    bulletSprite->setPosition(window->getView().getCenter());
+    bulletSprite->setPosition(bulletPosition);
 
     PhysicsBody* physicsBody = new PhysicsBody();
     PhysicsVolume* physicVolume = new SphereVolume(bulletSprite);
