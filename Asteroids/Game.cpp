@@ -50,7 +50,7 @@ void Game::Update(float dt) {
 void Game::TransitionScene()
 {
     SceneManager* sceneManger = SceneManager::GetInstance();
-    sceneManger->PopScene();
+    sceneManger->ChangeScene(new EndScreen(window, score));
     return;
 }
 

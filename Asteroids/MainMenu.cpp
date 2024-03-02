@@ -21,7 +21,7 @@ void MainMenu::Update(float dt)
     ui->SetCharacterSize(80);
     ui->SetColor(sf::Color::Cyan);
     float titleLength = titleText.length() * ui->GetCharecterSize();
-    ui->SetPosition(sf::Vector2f((windowSize.x - titleLength / 2) / 2.0f, windowSize.y / 2.0f - 100));  // Adjusted position
+    ui->SetPosition(sf::Vector2f((windowSize.x - titleLength / 2) / 2.0f, windowSize.y / 2.0f - 100));
     ui->Draw(window);
 
     std::string firstLine = "Press ENTER To Start";
@@ -34,8 +34,6 @@ void MainMenu::Update(float dt)
 
     std::string secondLine = "created by Sameer Ahmed";
     ui->SetText(secondLine);
-    ui->SetCharacterSize(30);
-    ui->SetColor(sf::Color::White);
     float secondLineLength = secondLine.length() * ui->GetCharecterSize();
     ui->SetPosition(sf::Vector2f((windowSize.x - secondLineLength / 2) / 2.0f, windowSize.y / 2.0f + 20));
     ui->Draw(window);

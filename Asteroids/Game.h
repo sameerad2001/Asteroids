@@ -6,6 +6,7 @@
 #include "AsteroidPool.h"
 #include "Bullet.h"
 #include "Engine.h"
+#include "EndScreen.h"
 #include "EventSystem.h"
 #include "Player.h"
 #include "UISystem.h"
