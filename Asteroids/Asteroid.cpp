@@ -73,7 +73,7 @@ void Asteroid::InitializeAsteroid() {
     float velY = std::sin(radians) * SPEED;
     asteroidVelocity = sf::Vector2f(velX, velY);
     PhysicsBody* physicsBody = new PhysicsBody();
-    PhysicsVolume* physicVolume = new AABBVolume(asteroidSprite);
+    PhysicsVolume* physicVolume = new SphereVolume(asteroidSprite);
     physicsBody->SetPhysicsVolume(physicVolume);
     this->SetPhysicsBody(physicsBody);
     this->SetTag("Asteroid");

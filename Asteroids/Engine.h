@@ -1,4 +1,5 @@
 #pragma once
+#include <algorithm>
 #include <vector>
 #include "GameObject.h"
 
@@ -14,9 +15,10 @@ public:
 
 private:
     bool IsColliding(GameObject* obj1, GameObject* obj2);
-    bool CheckAABBCollision(const AABBVolume* aabb1, const AABBVolume* aabb2);
+    bool AABBvsAABBCollision(const AABBVolume* aabb1, const AABBVolume* aabb2);
+    bool AABBvsSphereCollision(const AABBVolume* aabb, const SphereVolume* sphere);
+    bool SpherevsSphereCollision(const SphereVolume* sphere1, const SphereVolume* sphere2);
 
-private:
     std::vector<GameObject*> gameObjects;
     sf::RenderWindow* window;
 };

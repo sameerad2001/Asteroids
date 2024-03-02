@@ -17,7 +17,7 @@ Bullet::Bullet(
     bulletSprite->setPosition(window->getView().getCenter());
 
     PhysicsBody* physicsBody = new PhysicsBody();
-    PhysicsVolume* physicVolume = new AABBVolume(bulletSprite);
+    PhysicsVolume* physicVolume = new SphereVolume(bulletSprite);
     physicsBody->SetPhysicsVolume(physicVolume);
     this->SetPhysicsBody(physicsBody);
 
