@@ -41,4 +41,5 @@ protected :
 
 	void InitializeAsteroid();
 	sf::Vector2f GetRandomPosition() const;
+	sf::Vector2f GetRandomVelocity() const;
 };

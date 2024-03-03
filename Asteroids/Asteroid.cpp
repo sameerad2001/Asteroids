@@ -65,12 +65,7 @@ void Asteroid::InitializeAsteroid() {
     asteroidSprite->setOrigin(asteroidTexture.getSize().x / 2.0f, asteroidTexture.getSize().y / 2.0f);
     asteroidSprite->setScale(scaleFactors[asteroidType], scaleFactors[asteroidType]);
     asteroidPosition = GetRandomPosition();
-    float angle = static_cast<float>(std::rand() % 360);
-    float radians = angle * (3.14 / 180.0f);
-    static const float SPEED = 100.0f;
-    float velX = std::cos(radians) * SPEED;
-    float velY = std::sin(radians) * SPEED;
-    asteroidVelocity = sf::Vector2f(velX, velY);
+    asteroidVelocity = GetRandomVelocity();
     PhysicsBody* physicsBody = new PhysicsBody();
     PhysicsVolume* physicVolume = new SphereVolume(asteroidSprite);
     physicsBody->SetPhysicsVolume(physicVolume);
@@ -95,4 +90,13 @@ sf::Vector2f Asteroid::GetRandomPosition() const {
 
     sf::Vector2f position = sf::Vector2f(posX, posY);
     return position;
+}
+
+sf::Vector2f Asteroid::GetRandomVelocity() const {
+    float angle = static_cast<float>(std::rand() % 360);
+    float radians = angle * (3.14 / 180.0f);
+    static const float SPEED = 100.0f;
+    float velX = std::cos(radians) * SPEED;
+    float velY = std::sin(radians) * SPEED;
+    return sf::Vector2f(velX, velY);
 }
